@@ -34,6 +34,8 @@ pub mod pallet {
 		/// The claim is owned by another account, so caller can't revoke it.
 		NotClaimOwner,
 	}
-	#[pallet::storage] // <-- Step 5. code block will replace this.
+	#[pallet::storage]
+	pub(super) type Claims<T: Config> = StorageMap<_, Blake2_128Concat, T::Hash, (T::AccountId, T::BlockNumber)>;
+	
 	#[pallet::call]    // <-- Step 6. code block will replace this.
 }
