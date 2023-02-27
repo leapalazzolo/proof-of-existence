@@ -25,7 +25,15 @@ pub mod pallet {
 		/// Event emitted when a claim is revoked by the owner.
 		ClaimRevoked { who: T::AccountId, claim: T::Hash },
 	}
-	#[pallet::error]   // <-- Step 4. code block will replace this.
+	#[pallet::error]
+	pub enum Error<T> {
+		/// The claim already exists.
+		AlreadyClaimed,
+		/// The claim does not exist, so it cannot be revoked.
+		NoSuchClaim,
+		/// The claim is owned by another account, so caller can't revoke it.
+		NotClaimOwner,
+	}
 	#[pallet::storage] // <-- Step 5. code block will replace this.
 	#[pallet::call]    // <-- Step 6. code block will replace this.
 }
